@@ -1,0 +1,42 @@
+﻿@model WebApplication1.Sector_Bank
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sector_Bank</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SectorBankName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectorBankName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GICSSubindustryID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GICSSubindustryID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SectorOKVEDID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectorOKVEDID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SectorBankID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

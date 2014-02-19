@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ActivitiesModelStoreContainer" CdmEntityContainer="ActivitiesEntities">
+    <EntitySetMapping Name="bs_ClientEntities">
+      <EntityTypeMapping TypeName="ActivitiesModel.bs_ClientEntities">
+        <MappingFragment StoreEntitySet="bs_ClientEntities">
+          <ScalarProperty Name="ClientEntityID" ColumnName="ClientEntityID" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="EntityName" ColumnName="EntityName" />
+          <ScalarProperty Name="SectorBankID" ColumnName="SectorBankID" />
+          <ScalarProperty Name="SectorOKVEDID" ColumnName="SectorOKVEDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bs_ClientEntityLimits">
+      <EntityTypeMapping TypeName="ActivitiesModel.bs_ClientEntityLimits">
+        <MappingFragment StoreEntitySet="bs_ClientEntityLimits">
+          <ScalarProperty Name="CELID" ColumnName="CELID" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="ClientEntityID" ColumnName="ClientEntityID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="LimitValue" ColumnName="LimitValue" />
+          <ScalarProperty Name="CCYID" ColumnName="CCYID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bs_ClientLimits">
+      <EntityTypeMapping TypeName="ActivitiesModel.bs_ClientLimits">
+        <MappingFragment StoreEntitySet="bs_ClientLimits">
+          <ScalarProperty Name="CLID" ColumnName="CLID" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="LimitValue" ColumnName="LimitValue" />
+          <ScalarProperty Name="CCYID" ColumnName="CCYID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bs_ClientProducts">
+      <EntityTypeMapping TypeName="ActivitiesModel.bs_ClientProducts">
+        <MappingFragment StoreEntitySet="bs_ClientProducts">
+          <ScalarProperty Name="CPID" ColumnName="CPID" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="ClientEntityID" ColumnName="ClientEntityID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="DateAgreed" ColumnName="DateAgreed" />
+          <ScalarProperty Name="DateIssued" ColumnName="DateIssued" />
+          <ScalarProperty Name="DateEffective" ColumnName="DateEffective" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bs_Clients">
+      <EntityTypeMapping TypeName="ActivitiesModel.Clients">
+        <MappingFragment StoreEntitySet="bs_Clients">
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
+          <ScalarProperty Name="CountryOfRiskID" ColumnName="CountryOfRiskID" />
+          <ScalarProperty Name="GICSSubIndustryID" ColumnName="GICSSubIndustryID" />
+          <ScalarProperty Name="SectorBankID" ColumnName="SectorBankID" />
+          <ScalarProperty Name="SectorOKVEDID" ColumnName="SectorOKVEDID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bs_SectorBank">
+      <EntityTypeMapping TypeName="ActivitiesModel.Sector_Bank">
+        <MappingFragment StoreEntitySet="bs_SectorBank">
+          <ScalarProperty Name="SectorOKVEDID" ColumnName="SectorOKVEDID" />
+          <ScalarProperty Name="GICSSubindustryID" ColumnName="GICSSubindustryID" />
+          <ScalarProperty Name="SectorBankName" ColumnName="SectorBankName" />
+          <ScalarProperty Name="SectorBankID" ColumnName="SectorBankID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bs_SectorOKVED">
+      <EntityTypeMapping TypeName="ActivitiesModel.bs_SectorOKVED">
+        <MappingFragment StoreEntitySet="bs_SectorOKVED">
+          <ScalarProperty Name="SectorOKVEDName" ColumnName="SectorOKVEDName" />
+          <ScalarProperty Name="SectorOKVEDID" ColumnName="SectorOKVEDID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

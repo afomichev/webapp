@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ActivitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="bs_ClientEntities">
+    <Key>
+      <PropertyRef Name="ClientEntityID" />
+    </Key>
+    <Property Name="ClientEntityID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ClientID" Type="int" />
+    <Property Name="EntityName" Type="varchar" MaxLength="50" />
+    <Property Name="SectorBankID" Type="int" Nullable="false" />
+    <Property Name="SectorOKVEDID" Type="int" />
+  </EntityType>
+  <EntityType Name="bs_ClientEntityLimits">
+    <Key>
+      <PropertyRef Name="CELID" />
+    </Key>
+    <Property Name="CELID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ClientID" Type="int" />
+    <Property Name="ClientEntityID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="LimitValue" Type="numeric" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="CCYID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bs_ClientLimits">
+    <Key>
+      <PropertyRef Name="CLID" />
+    </Key>
+    <Property Name="CLID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ClientID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="LimitValue" Type="numeric" Precision="18" Scale="8" Nullable="false" />
+    <Property Name="CCYID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="bs_ClientProducts">
+    <Key>
+      <PropertyRef Name="CPID" />
+    </Key>
+    <Property Name="CPID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClientID" Type="int" />
+    <Property Name="ClientEntityID" Type="int" Nullable="false" />
+    <Property Name="ProductID" Type="int" Nullable="false" />
+    <Property Name="DateAgreed" Type="datetime" />
+    <Property Name="DateIssued" Type="datetime" Nullable="false" />
+    <Property Name="DateEffective" Type="datetime" />
+  </EntityType>
+  <EntityType Name="bs_Clients">
+    <Key>
+      <PropertyRef Name="ClientID" />
+    </Key>
+    <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar" MaxLength="50" />
+    <Property Name="PrimaryContact" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="CountryOfRiskID" Type="int" />
+    <Property Name="GICSSubIndustryID" Type="int" />
+    <Property Name="SectorBankID" Type="int" Nullable="false" />
+    <Property Name="SectorOKVEDID" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" />
+  </EntityType>
+  <EntityType Name="bs_SectorBank">
+    <Key>
+      <PropertyRef Name="SectorBankID" />
+    </Key>
+    <Property Name="SectorBankID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="SectorBankName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="GICSSubindustryID" Type="int" />
+    <Property Name="SectorOKVEDID" Type="int" />
+  </EntityType>
+  <EntityType Name="bs_SectorOKVED">
+    <Key>
+      <PropertyRef Name="SectorOKVEDID" />
+    </Key>
+    <Property Name="SectorOKVEDID" Type="int" Nullable="false" />
+    <Property Name="SectorOKVEDName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_bs_ClientLimits_bs_ClientProducts">
+    <End Role="bs_ClientProducts" Type="Self.bs_ClientProducts" Multiplicity="1" />
+    <End Role="bs_ClientLimits" Type="Self.bs_ClientLimits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bs_ClientProducts">
+        <PropertyRef Name="CPID" />
+      </Principal>
+      <Dependent Role="bs_ClientLimits">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bs_ClientLimits_bs_Clients">
+    <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="1" />
+    <End Role="bs_ClientLimits" Type="Self.bs_ClientLimits" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bs_Clients">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="bs_ClientLimits">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bs_ClientProducts_bs_Clients">
+    <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="0..1" />
+    <End Role="bs_ClientProducts" Type="Self.bs_ClientProducts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bs_Clients">
+        <PropertyRef Name="ClientID" />
+      </Principal>
+      <Dependent Role="bs_ClientProducts">
+        <PropertyRef Name="ClientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bs_Clients_bs_SectorBank">
+    <End Role="bs_SectorBank" Type="Self.bs_SectorBank" Multiplicity="1" />
+    <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bs_SectorBank">
+        <PropertyRef Name="SectorBankID" />
+      </Principal>
+      <Dependent Role="bs_Clients">
+        <PropertyRef Name="SectorBankID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bs_Clients_bs_SectorOKVED">
+    <End Role="bs_SectorOKVED" Type="Self.bs_SectorOKVED" Multiplicity="1" />
+    <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bs_SectorOKVED">
+        <PropertyRef Name="SectorOKVEDID" />
+      </Principal>
+      <Dependent Role="bs_Clients">
+        <PropertyRef Name="SectorOKVEDID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ActivitiesModelStoreContainer">
+    <EntitySet Name="bs_ClientEntities" EntityType="Self.bs_ClientEntities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bs_ClientEntityLimits" EntityType="Self.bs_ClientEntityLimits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bs_ClientLimits" EntityType="Self.bs_ClientLimits" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bs_ClientProducts" EntityType="Self.bs_ClientProducts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bs_Clients" EntityType="Self.bs_Clients" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bs_SectorBank" EntityType="Self.bs_SectorBank" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bs_SectorOKVED" EntityType="Self.bs_SectorOKVED" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_bs_ClientLimits_bs_ClientProducts" Association="Self.FK_bs_ClientLimits_bs_ClientProducts">
+      <End Role="bs_ClientProducts" EntitySet="bs_ClientProducts" />
+      <End Role="bs_ClientLimits" EntitySet="bs_ClientLimits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bs_ClientLimits_bs_Clients" Association="Self.FK_bs_ClientLimits_bs_Clients">
+      <End Role="bs_Clients" EntitySet="bs_Clients" />
+      <End Role="bs_ClientLimits" EntitySet="bs_ClientLimits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bs_ClientProducts_bs_Clients" Association="Self.FK_bs_ClientProducts_bs_Clients">
+      <End Role="bs_Clients" EntitySet="bs_Clients" />
+      <End Role="bs_ClientProducts" EntitySet="bs_ClientProducts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bs_Clients_bs_SectorBank" Association="Self.FK_bs_Clients_bs_SectorBank">
+      <End Role="bs_SectorBank" EntitySet="bs_SectorBank" />
+      <End Role="bs_Clients" EntitySet="bs_Clients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bs_Clients_bs_SectorOKVED" Association="Self.FK_bs_Clients_bs_SectorOKVED">
+      <End Role="bs_SectorOKVED" EntitySet="bs_SectorOKVED" />
+      <End Role="bs_Clients" EntitySet="bs_Clients" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
