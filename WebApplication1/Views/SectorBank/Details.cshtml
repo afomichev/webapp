@@ -1,4 +1,4 @@
-﻿@model WebApplication1.Sector_Bank
+﻿@model WebApplication1.Models.bs_SectorBank
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Sector_Bank</h4>
+    <h4>bs_SectorBank</h4>
 	<hr />
     <dl class="dl-horizontal">
         <dt>
@@ -27,11 +27,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.SectorOKVEDID)
+            @Html.DisplayNameFor(model => model.bs_SectorOKVED.SectorOKVEDName)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.SectorOKVEDID)
+            @Html.DisplayFor(model => model.bs_SectorOKVED.SectorOKVEDName)
         </dd>
 
     </dl>

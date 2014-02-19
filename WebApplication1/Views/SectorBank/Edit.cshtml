@@ -1,9 +1,8 @@
-﻿@model WebApplication1.Sector_Bank
+﻿@model WebApplication1.Models.bs_SectorBank
 
 @{
     ViewBag.Title = "Edit";
 }
-@section Scripts {}
 
 <h2>Edit</h2>
 
@@ -13,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Sector_Bank</h4>
+        <h4>bs_SectorBank</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.SectorBankID)
@@ -35,9 +34,9 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SectorOKVEDID, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.SectorOKVEDID, "SectorOKVEDID", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.SectorOKVEDID)
+                @Html.DropDownList("SectorOKVEDID", String.Empty)
                 @Html.ValidationMessageFor(model => model.SectorOKVEDID)
             </div>
         </div>

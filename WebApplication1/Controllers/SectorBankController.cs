@@ -6,18 +6,19 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication1;
+using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class SectorBankController : Controller
     {
-        private ActivitiesEntities db = new ActivitiesEntities();
+        private BanksFOSystemEntities1 db = new BanksFOSystemEntities1();
 
         // GET: /SectorBank/
         public ActionResult Index()
         {
-            return View(db.bs_SectorBank.ToList());
+            var bs_sectorbank = db.bs_SectorBank.Include(b => b.bs_SectorOKVED);
+            return View(bs_sectorbank.ToList());
         }
 
         // GET: /SectorBank/Details/5
@@ -27,17 +28,18 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sector_Bank sector_bank = db.bs_SectorBank.Find(id);
-            if (sector_bank == null)
+            bs_SectorBank bs_sectorbank = db.bs_SectorBank.Find(id);
+            if (bs_sectorbank == null)
             {
                 return HttpNotFound();
             }
-            return View(sector_bank);
+            return View(bs_sectorbank);
         }
 
         // GET: /SectorBank/Create
         public ActionResult Create()
         {
+            ViewBag.SectorOKVEDID = new SelectList(db.bs_SectorOKVED, "SectorOKVEDID", "SectorOKVEDName");
             return View();
         }
 
@@ -46,16 +48,17 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="SectorBankID,SectorBankName,GICSSubindustryID,SectorOKVEDID")] Sector_Bank sector_bank)
+        public ActionResult Create([Bind(Include="SectorBankID,SectorBankName,GICSSubindustryID,SectorOKVEDID")] bs_SectorBank bs_sectorbank)
         {
             if (ModelState.IsValid)
             {
-                db.bs_SectorBank.Add(sector_bank);
+                db.bs_SectorBank.Add(bs_sectorbank);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(sector_bank);
+            ViewBag.SectorOKVEDID = new SelectList(db.bs_SectorOKVED, "SectorOKVEDID", "SectorOKVEDName", bs_sectorbank.SectorOKVEDID);
+            return View(bs_sectorbank);
         }
 
         // GET: /SectorBank/Edit/5
@@ -65,12 +68,13 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sector_Bank sector_bank = db.bs_SectorBank.Find(id);
-            if (sector_bank == null)
+            bs_SectorBank bs_sectorbank = db.bs_SectorBank.Find(id);
+            if (bs_sectorbank == null)
             {
                 return HttpNotFound();
             }
-            return View(sector_bank);
+            ViewBag.SectorOKVEDID = new SelectList(db.bs_SectorOKVED, "SectorOKVEDID", "SectorOKVEDName", bs_sectorbank.SectorOKVEDID);
+            return View(bs_sectorbank);
         }
 
         // POST: /SectorBank/Edit/5
@@ -78,15 +82,16 @@ namespace WebApplication1.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="SectorBankID,SectorBankName,GICSSubindustryID,SectorOKVEDID")] Sector_Bank sector_bank)
+        public ActionResult Edit([Bind(Include="SectorBankID,SectorBankName,GICSSubindustryID,SectorOKVEDID")] bs_SectorBank bs_sectorbank)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sector_bank).State = EntityState.Modified;
+                db.Entry(bs_sectorbank).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(sector_bank);
+            ViewBag.SectorOKVEDID = new SelectList(db.bs_SectorOKVED, "SectorOKVEDID", "SectorOKVEDName", bs_sectorbank.SectorOKVEDID);
+            return View(bs_sectorbank);
         }
 
         // GET: /SectorBank/Delete/5
@@ -96,12 +101,12 @@ namespace WebApplication1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Sector_Bank sector_bank = db.bs_SectorBank.Find(id);
-            if (sector_bank == null)
+            bs_SectorBank bs_sectorbank = db.bs_SectorBank.Find(id);
+            if (bs_sectorbank == null)
             {
                 return HttpNotFound();
             }
-            return View(sector_bank);
+            return View(bs_sectorbank);
         }
 
         // POST: /SectorBank/Delete/5
@@ -109,8 +114,8 @@ namespace WebApplication1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Sector_Bank sector_bank = db.bs_SectorBank.Find(id);
-            db.bs_SectorBank.Remove(sector_bank);
+            bs_SectorBank bs_sectorbank = db.bs_SectorBank.Find(id);
+            db.bs_SectorBank.Remove(bs_sectorbank);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

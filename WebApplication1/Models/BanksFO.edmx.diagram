@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="26c9c79ca0c94c44b4562a6e64cd6132" Name="dgClients" ShowGrid="true">
+        <EntityTypeShape EntityType="BanksFOSystemModel.bs_ClientEntities" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanksFOSystemModel.bs_ClientEntityLimits" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanksFOSystemModel.bs_ClientFTPRates" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanksFOSystemModel.bs_ClientLimits" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanksFOSystemModel.bs_ClientMeetings" Width="1.5" PointX="5.25" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanksFOSystemModel.bs_ClientProducts" Width="1.5" PointX="6" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanksFOSystemModel.bs_Clients" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanksFOSystemModel.bs_GICSMap" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanksFOSystemModel.bs_SectorBank" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BanksFOSystemModel.bs_SectorOKVED" Width="1.5" PointX="0.875" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="BanksFOSystemModel.FK_bs_ClientEntityLimits_bs_ClientEntities" ManuallyRouted="false" />
+        <AssociationConnector Association="BanksFOSystemModel.FK_bs_ClientMeetings_bs_ClientEntities" ManuallyRouted="false" />
+        <AssociationConnector Association="BanksFOSystemModel.FK_bs_ClientEntityLimits_bs_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="BanksFOSystemModel.FK_bs_ClientFTPRates_bs_ClientProducts" ManuallyRouted="false" />
+        <AssociationConnector Association="BanksFOSystemModel.FK_bs_ClientFTPRates_bs_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="BanksFOSystemModel.FK_bs_ClientMeetings_bs_Clients" ManuallyRouted="false" />
+        <AssociationConnector Association="BanksFOSystemModel.FK_bs_Clients_bs_SectorBank" ManuallyRouted="false" />
+        <AssociationConnector Association="BanksFOSystemModel.FK_bs_Clients_bs_SectorOKVED" ManuallyRouted="false" />
+        <AssociationConnector Association="BanksFOSystemModel.FK_bs_SectorBank_bs_SectorOKVED" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

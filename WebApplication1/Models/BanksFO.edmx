@@ -1,0 +1,726 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BanksFOSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="bs_ClientEntities">
+          <Key>
+            <PropertyRef Name="ClientEntityID" />
+          </Key>
+          <Property Name="ClientEntityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="EntityName" Type="varchar" MaxLength="50" />
+          <Property Name="SectorBankID" Type="int" Nullable="false" />
+          <Property Name="SectorOKVEDID" Type="int" />
+        </EntityType>
+        <EntityType Name="bs_ClientEntityLimits">
+          <Key>
+            <PropertyRef Name="CELID" />
+          </Key>
+          <Property Name="CELID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="ClientEntityID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="LimitValue" Type="numeric" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="CCYID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bs_ClientFTPRates">
+          <Key>
+            <PropertyRef Name="CFTPID" />
+          </Key>
+          <Property Name="CFTPID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="ClientEntityID" Type="int" />
+          <Property Name="RateValue" Type="numeric" Precision="10" Scale="10" />
+          <Property Name="DateEffective" Type="datetime" />
+          <Property Name="PmtFreq" Type="numeric" Precision="18" Scale="5" />
+          <Property Name="CCYID" Type="int" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="ProductID" Type="int" />
+        </EntityType>
+        <EntityType Name="bs_ClientLimits">
+          <Key>
+            <PropertyRef Name="CLID" />
+          </Key>
+          <Property Name="CLID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="LimitValue" Type="numeric" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="CCYID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bs_ClientMeetings">
+          <Key>
+            <PropertyRef Name="ClientMtgID" />
+          </Key>
+          <Property Name="ClientMtgID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="ClientEntityID" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Subject" Type="varchar" MaxLength="500" />
+          <Property Name="RM" Type="varchar" MaxLength="50" />
+          <Property Name="Contacts" Type="varchar" MaxLength="500" />
+          <Property Name="Results" Type="varchar" MaxLength="500" />
+          <Property Name="Questions" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="bs_ClientProducts">
+          <Key>
+            <PropertyRef Name="CPID" />
+          </Key>
+          <Property Name="CPID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ClientID" Type="int" />
+          <Property Name="ClientEntityID" Type="int" Nullable="false" />
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="DateAgreed" Type="datetime" />
+          <Property Name="DateIssued" Type="datetime" Nullable="false" />
+          <Property Name="DateEffective" Type="datetime" />
+        </EntityType>
+        <EntityType Name="bs_Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="varchar" MaxLength="50" />
+          <Property Name="PrimaryContact" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CountryOfRiskID" Type="int" />
+          <Property Name="GICSSubIndustryID" Type="int" />
+          <Property Name="SectorBankID" Type="int" Nullable="false" />
+          <Property Name="SectorOKVEDID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" />
+        </EntityType>
+        <EntityType Name="bs_GICSMap">
+          <Key>
+            <PropertyRef Name="GICSSubindustryID" />
+          </Key>
+          <Property Name="GICSSubindustryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectorCode" Type="varchar" MaxLength="50" />
+          <Property Name="SectorName" Type="varchar" MaxLength="50" />
+          <Property Name="IndustryGroupCode" Type="varchar" MaxLength="50" />
+          <Property Name="IndustryGroupName" Type="varchar" MaxLength="50" />
+          <Property Name="IndustryCode" Type="varchar" MaxLength="50" />
+          <Property Name="IndustryName" Type="varchar" MaxLength="50" />
+          <Property Name="SubindustryCode" Type="varchar" MaxLength="50" />
+          <Property Name="SubindustryName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="bs_SectorBank">
+          <Key>
+            <PropertyRef Name="SectorBankID" />
+          </Key>
+          <Property Name="SectorBankID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SectorBankName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GICSSubindustryID" Type="int" />
+          <Property Name="SectorOKVEDID" Type="int" />
+        </EntityType>
+        <EntityType Name="bs_SectorOKVED">
+          <Key>
+            <PropertyRef Name="SectorOKVEDID" />
+          </Key>
+          <Property Name="SectorOKVEDID" Type="int" Nullable="false" />
+          <Property Name="SectorOKVEDName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_bs_ClientEntityLimits_bs_ClientEntities">
+          <End Role="bs_ClientEntities" Type="Self.bs_ClientEntities" Multiplicity="1" />
+          <End Role="bs_ClientEntityLimits" Type="Self.bs_ClientEntityLimits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_ClientEntities">
+              <PropertyRef Name="ClientEntityID" />
+            </Principal>
+            <Dependent Role="bs_ClientEntityLimits">
+              <PropertyRef Name="ClientEntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_ClientEntityLimits_bs_Clients">
+          <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="0..1" />
+          <End Role="bs_ClientEntityLimits" Type="Self.bs_ClientEntityLimits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="bs_ClientEntityLimits">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_ClientFTPRates_bs_ClientProducts">
+          <End Role="bs_ClientProducts" Type="Self.bs_ClientProducts" Multiplicity="0..1" />
+          <End Role="bs_ClientFTPRates" Type="Self.bs_ClientFTPRates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_ClientProducts">
+              <PropertyRef Name="CPID" />
+            </Principal>
+            <Dependent Role="bs_ClientFTPRates">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_ClientFTPRates_bs_Clients">
+          <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="0..1" />
+          <End Role="bs_ClientFTPRates" Type="Self.bs_ClientFTPRates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="bs_ClientFTPRates">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_ClientMeetings_bs_ClientEntities">
+          <End Role="bs_ClientEntities" Type="Self.bs_ClientEntities" Multiplicity="0..1" />
+          <End Role="bs_ClientMeetings" Type="Self.bs_ClientMeetings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_ClientEntities">
+              <PropertyRef Name="ClientEntityID" />
+            </Principal>
+            <Dependent Role="bs_ClientMeetings">
+              <PropertyRef Name="ClientEntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_ClientMeetings_bs_Clients">
+          <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="0..1" />
+          <End Role="bs_ClientMeetings" Type="Self.bs_ClientMeetings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="bs_ClientMeetings">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_Clients_bs_SectorBank">
+          <End Role="bs_SectorBank" Type="Self.bs_SectorBank" Multiplicity="1" />
+          <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_SectorBank">
+              <PropertyRef Name="SectorBankID" />
+            </Principal>
+            <Dependent Role="bs_Clients">
+              <PropertyRef Name="SectorBankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_Clients_bs_SectorOKVED">
+          <End Role="bs_SectorOKVED" Type="Self.bs_SectorOKVED" Multiplicity="1" />
+          <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_SectorOKVED">
+              <PropertyRef Name="SectorOKVEDID" />
+            </Principal>
+            <Dependent Role="bs_Clients">
+              <PropertyRef Name="SectorOKVEDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_SectorBank_bs_SectorOKVED">
+          <End Role="bs_SectorOKVED" Type="Self.bs_SectorOKVED" Multiplicity="0..1" />
+          <End Role="bs_SectorBank" Type="Self.bs_SectorBank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_SectorOKVED">
+              <PropertyRef Name="SectorOKVEDID" />
+            </Principal>
+            <Dependent Role="bs_SectorBank">
+              <PropertyRef Name="SectorOKVEDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BanksFOSystemModelStoreContainer">
+          <EntitySet Name="bs_ClientEntities" EntityType="Self.bs_ClientEntities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bs_ClientEntityLimits" EntityType="Self.bs_ClientEntityLimits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bs_ClientFTPRates" EntityType="Self.bs_ClientFTPRates" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bs_ClientLimits" EntityType="Self.bs_ClientLimits" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bs_ClientMeetings" EntityType="Self.bs_ClientMeetings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bs_ClientProducts" EntityType="Self.bs_ClientProducts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bs_Clients" EntityType="Self.bs_Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bs_GICSMap" EntityType="Self.bs_GICSMap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bs_SectorBank" EntityType="Self.bs_SectorBank" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bs_SectorOKVED" EntityType="Self.bs_SectorOKVED" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_bs_ClientEntityLimits_bs_ClientEntities" Association="Self.FK_bs_ClientEntityLimits_bs_ClientEntities">
+            <End Role="bs_ClientEntities" EntitySet="bs_ClientEntities" />
+            <End Role="bs_ClientEntityLimits" EntitySet="bs_ClientEntityLimits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_ClientEntityLimits_bs_Clients" Association="Self.FK_bs_ClientEntityLimits_bs_Clients">
+            <End Role="bs_Clients" EntitySet="bs_Clients" />
+            <End Role="bs_ClientEntityLimits" EntitySet="bs_ClientEntityLimits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_ClientFTPRates_bs_ClientProducts" Association="Self.FK_bs_ClientFTPRates_bs_ClientProducts">
+            <End Role="bs_ClientProducts" EntitySet="bs_ClientProducts" />
+            <End Role="bs_ClientFTPRates" EntitySet="bs_ClientFTPRates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_ClientFTPRates_bs_Clients" Association="Self.FK_bs_ClientFTPRates_bs_Clients">
+            <End Role="bs_Clients" EntitySet="bs_Clients" />
+            <End Role="bs_ClientFTPRates" EntitySet="bs_ClientFTPRates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_ClientMeetings_bs_ClientEntities" Association="Self.FK_bs_ClientMeetings_bs_ClientEntities">
+            <End Role="bs_ClientEntities" EntitySet="bs_ClientEntities" />
+            <End Role="bs_ClientMeetings" EntitySet="bs_ClientMeetings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_ClientMeetings_bs_Clients" Association="Self.FK_bs_ClientMeetings_bs_Clients">
+            <End Role="bs_Clients" EntitySet="bs_Clients" />
+            <End Role="bs_ClientMeetings" EntitySet="bs_ClientMeetings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_Clients_bs_SectorBank" Association="Self.FK_bs_Clients_bs_SectorBank">
+            <End Role="bs_SectorBank" EntitySet="bs_SectorBank" />
+            <End Role="bs_Clients" EntitySet="bs_Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_Clients_bs_SectorOKVED" Association="Self.FK_bs_Clients_bs_SectorOKVED">
+            <End Role="bs_SectorOKVED" EntitySet="bs_SectorOKVED" />
+            <End Role="bs_Clients" EntitySet="bs_Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_SectorBank_bs_SectorOKVED" Association="Self.FK_bs_SectorBank_bs_SectorOKVED">
+            <End Role="bs_SectorOKVED" EntitySet="bs_SectorOKVED" />
+            <End Role="bs_SectorBank" EntitySet="bs_SectorBank" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BanksFOSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="bs_ClientEntities">
+          <Key>
+            <PropertyRef Name="ClientEntityID" />
+          </Key>
+          <Property Name="ClientEntityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="EntityName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SectorBankID" Type="Int32" Nullable="false" />
+          <Property Name="SectorOKVEDID" Type="Int32" />
+          <NavigationProperty Name="bs_ClientEntityLimits" Relationship="Self.FK_bs_ClientEntityLimits_bs_ClientEntities" FromRole="bs_ClientEntities" ToRole="bs_ClientEntityLimits" />
+          <NavigationProperty Name="bs_ClientMeetings" Relationship="Self.FK_bs_ClientMeetings_bs_ClientEntities" FromRole="bs_ClientEntities" ToRole="bs_ClientMeetings" />
+        </EntityType>
+        <EntityType Name="bs_ClientEntityLimits">
+          <Key>
+            <PropertyRef Name="CELID" />
+          </Key>
+          <Property Name="CELID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="ClientEntityID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="LimitValue" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="CCYID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bs_ClientEntities" Relationship="Self.FK_bs_ClientEntityLimits_bs_ClientEntities" FromRole="bs_ClientEntityLimits" ToRole="bs_ClientEntities" />
+          <NavigationProperty Name="bs_Clients" Relationship="Self.FK_bs_ClientEntityLimits_bs_Clients" FromRole="bs_ClientEntityLimits" ToRole="bs_Clients" />
+        </EntityType>
+        <EntityType Name="bs_ClientFTPRates">
+          <Key>
+            <PropertyRef Name="CFTPID" />
+          </Key>
+          <Property Name="CFTPID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="ClientEntityID" Type="Int32" />
+          <Property Name="RateValue" Type="Decimal" Precision="10" Scale="10" />
+          <Property Name="DateEffective" Type="DateTime" Precision="3" />
+          <Property Name="PmtFreq" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="CCYID" Type="Int32" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="ProductID" Type="Int32" />
+          <NavigationProperty Name="bs_ClientProducts" Relationship="Self.FK_bs_ClientFTPRates_bs_ClientProducts" FromRole="bs_ClientFTPRates" ToRole="bs_ClientProducts" />
+          <NavigationProperty Name="bs_Clients" Relationship="Self.FK_bs_ClientFTPRates_bs_Clients" FromRole="bs_ClientFTPRates" ToRole="bs_Clients" />
+        </EntityType>
+        <EntityType Name="bs_ClientLimits">
+          <Key>
+            <PropertyRef Name="CLID" />
+          </Key>
+          <Property Name="CLID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="LimitValue" Type="Decimal" Precision="18" Scale="8" Nullable="false" />
+          <Property Name="CCYID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bs_ClientMeetings">
+          <Key>
+            <PropertyRef Name="ClientMtgID" />
+          </Key>
+          <Property Name="ClientMtgID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="ClientEntityID" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Subject" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="RM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contacts" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Results" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Questions" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bs_ClientEntities" Relationship="Self.FK_bs_ClientMeetings_bs_ClientEntities" FromRole="bs_ClientMeetings" ToRole="bs_ClientEntities" />
+          <NavigationProperty Name="bs_Clients" Relationship="Self.FK_bs_ClientMeetings_bs_Clients" FromRole="bs_ClientMeetings" ToRole="bs_Clients" />
+        </EntityType>
+        <EntityType Name="bs_ClientProducts">
+          <Key>
+            <PropertyRef Name="CPID" />
+          </Key>
+          <Property Name="CPID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ClientID" Type="Int32" />
+          <Property Name="ClientEntityID" Type="Int32" Nullable="false" />
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="DateAgreed" Type="DateTime" Precision="3" />
+          <Property Name="DateIssued" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DateEffective" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="bs_ClientFTPRates" Relationship="Self.FK_bs_ClientFTPRates_bs_ClientProducts" FromRole="bs_ClientProducts" ToRole="bs_ClientFTPRates" />
+        </EntityType>
+        <EntityType Name="bs_Clients">
+          <Key>
+            <PropertyRef Name="ClientID" />
+          </Key>
+          <Property Name="ClientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PrimaryContact" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CountryOfRiskID" Type="Int32" />
+          <Property Name="GICSSubIndustryID" Type="Int32" />
+          <Property Name="SectorBankID" Type="Int32" Nullable="false" />
+          <Property Name="SectorOKVEDID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" />
+          <NavigationProperty Name="bs_ClientEntityLimits" Relationship="Self.FK_bs_ClientEntityLimits_bs_Clients" FromRole="bs_Clients" ToRole="bs_ClientEntityLimits" />
+          <NavigationProperty Name="bs_ClientFTPRates" Relationship="Self.FK_bs_ClientFTPRates_bs_Clients" FromRole="bs_Clients" ToRole="bs_ClientFTPRates" />
+          <NavigationProperty Name="bs_ClientMeetings" Relationship="Self.FK_bs_ClientMeetings_bs_Clients" FromRole="bs_Clients" ToRole="bs_ClientMeetings" />
+          <NavigationProperty Name="bs_SectorBank" Relationship="Self.FK_bs_Clients_bs_SectorBank" FromRole="bs_Clients" ToRole="bs_SectorBank" />
+          <NavigationProperty Name="bs_SectorOKVED" Relationship="Self.FK_bs_Clients_bs_SectorOKVED" FromRole="bs_Clients" ToRole="bs_SectorOKVED" />
+        </EntityType>
+        <EntityType Name="bs_GICSMap">
+          <Key>
+            <PropertyRef Name="GICSSubindustryID" />
+          </Key>
+          <Property Name="GICSSubindustryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectorCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SectorName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IndustryGroupCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IndustryGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IndustryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IndustryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubindustryCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SubindustryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="bs_SectorBank">
+          <Key>
+            <PropertyRef Name="SectorBankID" />
+          </Key>
+          <Property Name="SectorBankID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SectorBankName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GICSSubindustryID" Type="Int32" />
+          <Property Name="SectorOKVEDID" Type="Int32" />
+          <NavigationProperty Name="bs_Clients" Relationship="Self.FK_bs_Clients_bs_SectorBank" FromRole="bs_SectorBank" ToRole="bs_Clients" />
+          <NavigationProperty Name="bs_SectorOKVED" Relationship="BanksFOSystemModel.FK_bs_SectorBank_bs_SectorOKVED" FromRole="bs_SectorBank" ToRole="bs_SectorOKVED" />
+        </EntityType>
+        <EntityType Name="bs_SectorOKVED">
+          <Key>
+            <PropertyRef Name="SectorOKVEDID" />
+          </Key>
+          <Property Name="SectorOKVEDID" Type="Int32" Nullable="false" />
+          <Property Name="SectorOKVEDName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bs_Clients" Relationship="Self.FK_bs_Clients_bs_SectorOKVED" FromRole="bs_SectorOKVED" ToRole="bs_Clients" />
+          <NavigationProperty Name="bs_SectorBank" Relationship="BanksFOSystemModel.FK_bs_SectorBank_bs_SectorOKVED" FromRole="bs_SectorOKVED" ToRole="bs_SectorBank" />
+        </EntityType>
+        <Association Name="FK_bs_ClientEntityLimits_bs_ClientEntities">
+          <End Role="bs_ClientEntities" Type="Self.bs_ClientEntities" Multiplicity="1" />
+          <End Role="bs_ClientEntityLimits" Type="Self.bs_ClientEntityLimits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_ClientEntities">
+              <PropertyRef Name="ClientEntityID" />
+            </Principal>
+            <Dependent Role="bs_ClientEntityLimits">
+              <PropertyRef Name="ClientEntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_ClientMeetings_bs_ClientEntities">
+          <End Role="bs_ClientEntities" Type="Self.bs_ClientEntities" Multiplicity="0..1" />
+          <End Role="bs_ClientMeetings" Type="Self.bs_ClientMeetings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_ClientEntities">
+              <PropertyRef Name="ClientEntityID" />
+            </Principal>
+            <Dependent Role="bs_ClientMeetings">
+              <PropertyRef Name="ClientEntityID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_ClientEntityLimits_bs_Clients">
+          <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="0..1" />
+          <End Role="bs_ClientEntityLimits" Type="Self.bs_ClientEntityLimits" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="bs_ClientEntityLimits">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_ClientFTPRates_bs_ClientProducts">
+          <End Role="bs_ClientProducts" Type="Self.bs_ClientProducts" Multiplicity="0..1" />
+          <End Role="bs_ClientFTPRates" Type="Self.bs_ClientFTPRates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_ClientProducts">
+              <PropertyRef Name="CPID" />
+            </Principal>
+            <Dependent Role="bs_ClientFTPRates">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_ClientFTPRates_bs_Clients">
+          <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="0..1" />
+          <End Role="bs_ClientFTPRates" Type="Self.bs_ClientFTPRates" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="bs_ClientFTPRates">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_ClientMeetings_bs_Clients">
+          <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="0..1" />
+          <End Role="bs_ClientMeetings" Type="Self.bs_ClientMeetings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_Clients">
+              <PropertyRef Name="ClientID" />
+            </Principal>
+            <Dependent Role="bs_ClientMeetings">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_Clients_bs_SectorBank">
+          <End Role="bs_SectorBank" Type="Self.bs_SectorBank" Multiplicity="1" />
+          <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_SectorBank">
+              <PropertyRef Name="SectorBankID" />
+            </Principal>
+            <Dependent Role="bs_Clients">
+              <PropertyRef Name="SectorBankID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_bs_Clients_bs_SectorOKVED">
+          <End Role="bs_SectorOKVED" Type="Self.bs_SectorOKVED" Multiplicity="1" />
+          <End Role="bs_Clients" Type="Self.bs_Clients" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_SectorOKVED">
+              <PropertyRef Name="SectorOKVEDID" />
+            </Principal>
+            <Dependent Role="bs_Clients">
+              <PropertyRef Name="SectorOKVEDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BanksFOSystemEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="bs_ClientEntities" EntityType="Self.bs_ClientEntities" />
+          <EntitySet Name="bs_ClientEntityLimits" EntityType="Self.bs_ClientEntityLimits" />
+          <EntitySet Name="bs_ClientFTPRates" EntityType="Self.bs_ClientFTPRates" />
+          <EntitySet Name="bs_ClientLimits" EntityType="Self.bs_ClientLimits" />
+          <EntitySet Name="bs_ClientMeetings" EntityType="Self.bs_ClientMeetings" />
+          <EntitySet Name="bs_ClientProducts" EntityType="Self.bs_ClientProducts" />
+          <EntitySet Name="bs_Clients" EntityType="Self.bs_Clients" />
+          <EntitySet Name="bs_GICSMap" EntityType="Self.bs_GICSMap" />
+          <EntitySet Name="bs_SectorBank" EntityType="Self.bs_SectorBank" />
+          <EntitySet Name="bs_SectorOKVED" EntityType="Self.bs_SectorOKVED" />
+          <AssociationSet Name="FK_bs_ClientEntityLimits_bs_ClientEntities" Association="Self.FK_bs_ClientEntityLimits_bs_ClientEntities">
+            <End Role="bs_ClientEntities" EntitySet="bs_ClientEntities" />
+            <End Role="bs_ClientEntityLimits" EntitySet="bs_ClientEntityLimits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_ClientMeetings_bs_ClientEntities" Association="Self.FK_bs_ClientMeetings_bs_ClientEntities">
+            <End Role="bs_ClientEntities" EntitySet="bs_ClientEntities" />
+            <End Role="bs_ClientMeetings" EntitySet="bs_ClientMeetings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_ClientEntityLimits_bs_Clients" Association="Self.FK_bs_ClientEntityLimits_bs_Clients">
+            <End Role="bs_Clients" EntitySet="bs_Clients" />
+            <End Role="bs_ClientEntityLimits" EntitySet="bs_ClientEntityLimits" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_ClientFTPRates_bs_ClientProducts" Association="Self.FK_bs_ClientFTPRates_bs_ClientProducts">
+            <End Role="bs_ClientProducts" EntitySet="bs_ClientProducts" />
+            <End Role="bs_ClientFTPRates" EntitySet="bs_ClientFTPRates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_ClientFTPRates_bs_Clients" Association="Self.FK_bs_ClientFTPRates_bs_Clients">
+            <End Role="bs_Clients" EntitySet="bs_Clients" />
+            <End Role="bs_ClientFTPRates" EntitySet="bs_ClientFTPRates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_ClientMeetings_bs_Clients" Association="Self.FK_bs_ClientMeetings_bs_Clients">
+            <End Role="bs_Clients" EntitySet="bs_Clients" />
+            <End Role="bs_ClientMeetings" EntitySet="bs_ClientMeetings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_Clients_bs_SectorBank" Association="Self.FK_bs_Clients_bs_SectorBank">
+            <End Role="bs_SectorBank" EntitySet="bs_SectorBank" />
+            <End Role="bs_Clients" EntitySet="bs_Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_Clients_bs_SectorOKVED" Association="Self.FK_bs_Clients_bs_SectorOKVED">
+            <End Role="bs_SectorOKVED" EntitySet="bs_SectorOKVED" />
+            <End Role="bs_Clients" EntitySet="bs_Clients" />
+          </AssociationSet>
+          <AssociationSet Name="FK_bs_SectorBank_bs_SectorOKVED" Association="BanksFOSystemModel.FK_bs_SectorBank_bs_SectorOKVED">
+            <End Role="bs_SectorOKVED" EntitySet="bs_SectorOKVED" />
+            <End Role="bs_SectorBank" EntitySet="bs_SectorBank" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_bs_SectorBank_bs_SectorOKVED">
+          <End Type="BanksFOSystemModel.bs_SectorOKVED" Role="bs_SectorOKVED" Multiplicity="0..1" />
+          <End Type="BanksFOSystemModel.bs_SectorBank" Role="bs_SectorBank" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bs_SectorOKVED">
+              <PropertyRef Name="SectorOKVEDID" />
+            </Principal>
+            <Dependent Role="bs_SectorBank">
+              <PropertyRef Name="SectorOKVEDID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BanksFOSystemModelStoreContainer" CdmEntityContainer="BanksFOSystemEntities1">
+          <EntitySetMapping Name="bs_ClientEntities">
+            <EntityTypeMapping TypeName="BanksFOSystemModel.bs_ClientEntities">
+              <MappingFragment StoreEntitySet="bs_ClientEntities">
+                <ScalarProperty Name="ClientEntityID" ColumnName="ClientEntityID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="EntityName" ColumnName="EntityName" />
+                <ScalarProperty Name="SectorBankID" ColumnName="SectorBankID" />
+                <ScalarProperty Name="SectorOKVEDID" ColumnName="SectorOKVEDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bs_ClientEntityLimits">
+            <EntityTypeMapping TypeName="BanksFOSystemModel.bs_ClientEntityLimits">
+              <MappingFragment StoreEntitySet="bs_ClientEntityLimits">
+                <ScalarProperty Name="CELID" ColumnName="CELID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ClientEntityID" ColumnName="ClientEntityID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="LimitValue" ColumnName="LimitValue" />
+                <ScalarProperty Name="CCYID" ColumnName="CCYID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bs_ClientFTPRates">
+            <EntityTypeMapping TypeName="BanksFOSystemModel.bs_ClientFTPRates">
+              <MappingFragment StoreEntitySet="bs_ClientFTPRates">
+                <ScalarProperty Name="CFTPID" ColumnName="CFTPID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ClientEntityID" ColumnName="ClientEntityID" />
+                <ScalarProperty Name="RateValue" ColumnName="RateValue" />
+                <ScalarProperty Name="DateEffective" ColumnName="DateEffective" />
+                <ScalarProperty Name="PmtFreq" ColumnName="PmtFreq" />
+                <ScalarProperty Name="CCYID" ColumnName="CCYID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bs_ClientLimits">
+            <EntityTypeMapping TypeName="BanksFOSystemModel.bs_ClientLimits">
+              <MappingFragment StoreEntitySet="bs_ClientLimits">
+                <ScalarProperty Name="CLID" ColumnName="CLID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="LimitValue" ColumnName="LimitValue" />
+                <ScalarProperty Name="CCYID" ColumnName="CCYID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bs_ClientMeetings">
+            <EntityTypeMapping TypeName="BanksFOSystemModel.bs_ClientMeetings">
+              <MappingFragment StoreEntitySet="bs_ClientMeetings">
+                <ScalarProperty Name="ClientMtgID" ColumnName="ClientMtgID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ClientEntityID" ColumnName="ClientEntityID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="RM" ColumnName="RM" />
+                <ScalarProperty Name="Contacts" ColumnName="Contacts" />
+                <ScalarProperty Name="Results" ColumnName="Results" />
+                <ScalarProperty Name="Questions" ColumnName="Questions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bs_ClientProducts">
+            <EntityTypeMapping TypeName="BanksFOSystemModel.bs_ClientProducts">
+              <MappingFragment StoreEntitySet="bs_ClientProducts">
+                <ScalarProperty Name="CPID" ColumnName="CPID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="ClientEntityID" ColumnName="ClientEntityID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="DateAgreed" ColumnName="DateAgreed" />
+                <ScalarProperty Name="DateIssued" ColumnName="DateIssued" />
+                <ScalarProperty Name="DateEffective" ColumnName="DateEffective" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bs_Clients">
+            <EntityTypeMapping TypeName="BanksFOSystemModel.bs_Clients">
+              <MappingFragment StoreEntitySet="bs_Clients">
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
+                <ScalarProperty Name="CountryOfRiskID" ColumnName="CountryOfRiskID" />
+                <ScalarProperty Name="GICSSubIndustryID" ColumnName="GICSSubIndustryID" />
+                <ScalarProperty Name="SectorBankID" ColumnName="SectorBankID" />
+                <ScalarProperty Name="SectorOKVEDID" ColumnName="SectorOKVEDID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bs_GICSMap">
+            <EntityTypeMapping TypeName="BanksFOSystemModel.bs_GICSMap">
+              <MappingFragment StoreEntitySet="bs_GICSMap">
+                <ScalarProperty Name="GICSSubindustryID" ColumnName="GICSSubindustryID" />
+                <ScalarProperty Name="SectorCode" ColumnName="SectorCode" />
+                <ScalarProperty Name="SectorName" ColumnName="SectorName" />
+                <ScalarProperty Name="IndustryGroupCode" ColumnName="IndustryGroupCode" />
+                <ScalarProperty Name="IndustryGroupName" ColumnName="IndustryGroupName" />
+                <ScalarProperty Name="IndustryCode" ColumnName="IndustryCode" />
+                <ScalarProperty Name="IndustryName" ColumnName="IndustryName" />
+                <ScalarProperty Name="SubindustryCode" ColumnName="SubindustryCode" />
+                <ScalarProperty Name="SubindustryName" ColumnName="SubindustryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bs_SectorBank">
+            <EntityTypeMapping TypeName="BanksFOSystemModel.bs_SectorBank">
+              <MappingFragment StoreEntitySet="bs_SectorBank">
+                <ScalarProperty Name="SectorBankID" ColumnName="SectorBankID" />
+                <ScalarProperty Name="SectorBankName" ColumnName="SectorBankName" />
+                <ScalarProperty Name="GICSSubindustryID" ColumnName="GICSSubindustryID" />
+                <ScalarProperty Name="SectorOKVEDID" ColumnName="SectorOKVEDID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bs_SectorOKVED">
+            <EntityTypeMapping TypeName="BanksFOSystemModel.bs_SectorOKVED">
+              <MappingFragment StoreEntitySet="bs_SectorOKVED">
+                <ScalarProperty Name="SectorOKVEDID" ColumnName="SectorOKVEDID" />
+                <ScalarProperty Name="SectorOKVEDName" ColumnName="SectorOKVEDName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

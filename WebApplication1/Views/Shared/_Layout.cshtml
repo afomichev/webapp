@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
-    @section Scripts {
+    @section GlobalizeJS {
 
     @Scripts.Render("~/bundles/jqueryval")
 
@@ -61,7 +61,8 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Clients", "Index", "Clients")</li>
-                            <li>@Html.ActionLink("Sector Bank", "Index", "SectorBank")</li>
+                            <li>@Html.ActionLink("Sector Banks", "Index", "SectorBank")</li>
+                            <li>@Html.ActionLink("Sector OKVED", "Index", "SectorOKVED")</li>
                         </ul>
                     </li>
                     <li class="dropdown">

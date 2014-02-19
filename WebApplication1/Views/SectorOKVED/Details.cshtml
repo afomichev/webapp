@@ -1,0 +1,26 @@
+﻿@model WebApplication1.Models.bs_SectorOKVED
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>bs_SectorOKVED</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SectorOKVEDName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SectorOKVEDName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SectorOKVEDID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

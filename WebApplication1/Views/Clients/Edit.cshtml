@@ -1,4 +1,4 @@
-﻿@model WebApplication1.Clients
+﻿@model WebApplication1.Models.bs_Clients
 
 @{
     ViewBag.Title = "Edit";
@@ -12,7 +12,7 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Clients</h4>
+        <h4>bs_Clients</h4>
         <hr />
         @Html.ValidationSummary(true)
         @Html.HiddenFor(model => model.ClientID)

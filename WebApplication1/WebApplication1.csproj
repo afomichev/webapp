@@ -163,57 +163,69 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="bs_ClientEntities.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="bs_ClientEntityLimits.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="bs_ClientLimits.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="bs_ClientProducts.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="bs_SectorOKVED.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Clients.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ClientsMeta.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SectorBankController.cs" />
+    <Compile Include="Controllers\SectorOKVEDController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Model1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Model1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Model1.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\BanksFO.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BanksFO.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BanksFO.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BanksFO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BanksFO.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BanksFO.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bs_ClientEntities.cs">
+      <DependentUpon>BanksFO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bs_ClientEntityLimits.cs">
+      <DependentUpon>BanksFO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bs_ClientFTPRates.cs">
+      <DependentUpon>BanksFO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bs_ClientLimits.cs">
+      <DependentUpon>BanksFO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bs_ClientMeetings.cs">
+      <DependentUpon>BanksFO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bs_ClientProducts.cs">
+      <DependentUpon>BanksFO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bs_Clients.cs">
+      <DependentUpon>BanksFO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bs_GICSMap.cs">
+      <DependentUpon>BanksFO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bs_SectorBank.cs">
+      <DependentUpon>BanksFO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bs_SectorOKVED.cs">
+      <DependentUpon>BanksFO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ClientsMeta.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sector_Bank.cs">
-      <DependentUpon>Model1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\Identities.sql" />
+    <Content Include="App_Data\references.sql" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-responsive.css" />
     <Content Include="Content\bootstrap-responsive.min.css" />
@@ -232,22 +244,22 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <EntityDeploy Include="Model1.edmx">
+    <EntityDeploy Include="Models\BanksFO.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+      <LastGenOutput>BanksFO.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Model1.Context.tt">
+    <Content Include="Models\BanksFO.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>BanksFO.edmx</DependentUpon>
+      <LastGenOutput>BanksFO.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model1.edmx.diagram">
-      <DependentUpon>Model1.edmx</DependentUpon>
+    <Content Include="Models\BanksFO.edmx.diagram">
+      <DependentUpon>BanksFO.edmx</DependentUpon>
     </Content>
-    <Content Include="Model1.tt">
+    <Content Include="Models\BanksFO.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Model1.edmx</DependentUpon>
-      <LastGenOutput>Model1.cs</LastGenOutput>
+      <DependentUpon>BanksFO.edmx</DependentUpon>
+      <LastGenOutput>BanksFO.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker-globalize.js" />
@@ -662,7 +674,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -687,20 +701,24 @@
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
     <Content Include="Views\Clients\Create.cshtml" />
     <Content Include="Views\Clients\Delete.cshtml" />
     <Content Include="Views\Clients\Details.cshtml" />
     <Content Include="Views\Clients\Edit.cshtml" />
     <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\SectorOKVED\Create.cshtml" />
+    <Content Include="Views\SectorOKVED\Delete.cshtml" />
+    <Content Include="Views\SectorOKVED\Details.cshtml" />
+    <Content Include="Views\SectorOKVED\Edit.cshtml" />
+    <Content Include="Views\SectorOKVED\Index.cshtml" />
     <Content Include="Views\SectorBank\Create.cshtml" />
     <Content Include="Views\SectorBank\Delete.cshtml" />
     <Content Include="Views\SectorBank\Details.cshtml" />
     <Content Include="Views\SectorBank\Edit.cshtml" />
     <Content Include="Views\SectorBank\Index.cshtml" />
-    <Content Include="Scripts\jquery.validate.globalize.min.js.map" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Views\Test\" />
   </ItemGroup>
   <ItemGroup>

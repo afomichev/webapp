@@ -10,116 +10,107 @@ using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
-    public class ClientsController : Controller
+    public class SectorOKVEDController : Controller
     {
         private BanksFOSystemEntities1 db = new BanksFOSystemEntities1();
 
-        // GET: /Clients/
+        // GET: /SectorOKVED/
         public ActionResult Index()
         {
-            var bs_clients = db.bs_Clients.Include(b => b.bs_SectorBank).Include(b => b.bs_SectorOKVED);
-            return View(bs_clients.ToList());
+            return View(db.bs_SectorOKVED.ToList());
         }
 
-        // GET: /Clients/Details/5
+        // GET: /SectorOKVED/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            bs_Clients bs_clients = db.bs_Clients.Find(id);
-            if (bs_clients == null)
+            bs_SectorOKVED bs_sectorokved = db.bs_SectorOKVED.Find(id);
+            if (bs_sectorokved == null)
             {
                 return HttpNotFound();
             }
-            return View(bs_clients);
+            return View(bs_sectorokved);
         }
 
-        // GET: /Clients/Create
+        // GET: /SectorOKVED/Create
         public ActionResult Create()
         {
-            ViewBag.SectorBankID = new SelectList(db.bs_SectorBank, "SectorBankID", "SectorBankName");
-            ViewBag.SectorOKVEDID = new SelectList(db.bs_SectorOKVED, "SectorOKVEDID", "SectorOKVEDName");
             return View();
         }
 
-        // POST: /Clients/Create
+        // POST: /SectorOKVED/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="ClientID,Name,Address,PrimaryContact,CountryOfRiskID,GICSSubIndustryID,SectorBankID,SectorOKVEDID,CategoryID")] bs_Clients bs_clients)
+        public ActionResult Create([Bind(Include="SectorOKVEDID,SectorOKVEDName")] bs_SectorOKVED bs_sectorokved)
         {
             if (ModelState.IsValid)
             {
-                db.bs_Clients.Add(bs_clients);
+                db.bs_SectorOKVED.Add(bs_sectorokved);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SectorBankID = new SelectList(db.bs_SectorBank, "SectorBankID", "SectorBankName", bs_clients.SectorBankID);
-            ViewBag.SectorOKVEDID = new SelectList(db.bs_SectorOKVED, "SectorOKVEDID", "SectorOKVEDName", bs_clients.SectorOKVEDID);
-            return View(bs_clients);
+            return View(bs_sectorokved);
         }
 
-        // GET: /Clients/Edit/5
+        // GET: /SectorOKVED/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            bs_Clients bs_clients = db.bs_Clients.Find(id);
-            if (bs_clients == null)
+            bs_SectorOKVED bs_sectorokved = db.bs_SectorOKVED.Find(id);
+            if (bs_sectorokved == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.SectorBankID = new SelectList(db.bs_SectorBank, "SectorBankID", "SectorBankName", bs_clients.SectorBankID);
-            ViewBag.SectorOKVEDID = new SelectList(db.bs_SectorOKVED, "SectorOKVEDID", "SectorOKVEDName", bs_clients.SectorOKVEDID);
-            return View(bs_clients);
+            return View(bs_sectorokved);
         }
 
-        // POST: /Clients/Edit/5
+        // POST: /SectorOKVED/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="ClientID,Name,Address,PrimaryContact,CountryOfRiskID,GICSSubIndustryID,SectorBankID,SectorOKVEDID,CategoryID")] bs_Clients bs_clients)
+        public ActionResult Edit([Bind(Include="SectorOKVEDID,SectorOKVEDName")] bs_SectorOKVED bs_sectorokved)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bs_clients).State = EntityState.Modified;
+                db.Entry(bs_sectorokved).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SectorBankID = new SelectList(db.bs_SectorBank, "SectorBankID", "SectorBankName", bs_clients.SectorBankID);
-            ViewBag.SectorOKVEDID = new SelectList(db.bs_SectorOKVED, "SectorOKVEDID", "SectorOKVEDName", bs_clients.SectorOKVEDID);
-            return View(bs_clients);
+            return View(bs_sectorokved);
         }
 
-        // GET: /Clients/Delete/5
+        // GET: /SectorOKVED/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            bs_Clients bs_clients = db.bs_Clients.Find(id);
-            if (bs_clients == null)
+            bs_SectorOKVED bs_sectorokved = db.bs_SectorOKVED.Find(id);
+            if (bs_sectorokved == null)
             {
                 return HttpNotFound();
             }
-            return View(bs_clients);
+            return View(bs_sectorokved);
         }
 
-        // POST: /Clients/Delete/5
+        // POST: /SectorOKVED/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            bs_Clients bs_clients = db.bs_Clients.Find(id);
-            db.bs_Clients.Remove(bs_clients);
+            bs_SectorOKVED bs_sectorokved = db.bs_SectorOKVED.Find(id);
+            db.bs_SectorOKVED.Remove(bs_sectorokved);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
